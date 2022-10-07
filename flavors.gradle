@@ -1,0 +1,32 @@
+android {
+    flavorDimensions("build")
+    productFlavors {
+        dev {
+            dimension "build"
+
+            buildConfigField "String", "WEATHER_API_KEY", "\"5565d6912a4c40f089d125134221307\""
+            buildConfigField "String", "WEATHER_BASE_URL", "\"https://api.weatherapi.com/v1/\""
+        }
+        staging {
+            dimension "build"
+
+            buildConfigField "String", "WEATHER_API_KEY", "\"5565d6912a4c40f089d125134221307\""
+            buildConfigField "String", "WEATHER_BASE_URL", "\"https://api.weatherapi.com/v1/\""
+        }
+        production {
+            dimension "build"
+
+            buildConfigField "String", "WEATHER_API_KEY", "\"5565d6912a4c40f089d125134221307\""
+            buildConfigField "String", "WEATHER_BASE_URL", "\"https://api.weatherapi.com/v1/\""
+        }
+        qa {
+            dimension "build"
+
+            buildConfigField "String", "WEATHER_API_KEY", "\"5565d6912a4c40f089d125134221307\""
+            buildConfigField "String", "WEATHER_BASE_URL", "\"https://api.weatherapi.com/v1/\""
+        }
+    }
+    buildFeatures {
+        viewBinding true
+    }
+}

@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name" translatable="false">Weather</string>
+    <string name="search_city" translatable="false">Search for city</string>
+    <string name="humidity_unit" translatable="false">mph</string>
+    <string name="wind_unit" translatable="false">%</string>
+    <string name="favourites" translatable="false">Favourites</string>
+    <string name="no_fav_data" translatable="false">No Favourites found :(</string>
+    <string name="temp">change temp [C / F]</string>
+    <string name="channelId">"Ahoy channel"</string>
+</resources>

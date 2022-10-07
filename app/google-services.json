@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "419922388375",
+    "project_id": "ahoy-6efba",
+    "storage_bucket": "ahoy-6efba.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:419922388375:android:541c61bea003a11e31d0d2",
+        "android_client_info": {
+          "package_name": "com.gemidroid.weather"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "419922388375-jrib7v46uve9f9p0d3578ibcdjuppkm2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.gemidroid.weather",
+            "certificate_hash": "5bfa9d97875a6b3f320496f03d4b9fef41b24d47"
+          }
+        },
+        {
+          "client_id": "419922388375-aqkib3m111scechb36n0uih1rqsb9ggu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDPuHgLmU3o_Yf5y9_HJI1WmvaQpCjjzwg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "419922388375-aqkib3m111scechb36n0uih1rqsb9ggu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

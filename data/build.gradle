@@ -1,0 +1,47 @@
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+    id 'com.google.dagger.hilt.android'
+}
+apply from: "${rootProject.projectDir}/config.gradle"
+apply from: "${rootProject.projectDir}/flavors.gradle"
+
+android {
+    namespace 'com.gemidroid.data'
+    compileSdk compile_sdk_version
+    defaultConfig {
+        minSdk min_sdk_version
+        targetSdk target_sdk_version
+        buildConfigField "String", "GET_FORECAST_WEATHER", "\"forecast.json\""
+        buildConfigField "String", "SEARCH_WEATHER_CITY", "\"search.json\""
+        buildConfigField "String", "WEATHER_DB_NAME", "\"weather.db\""
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+dependencies {
+    implementation project(":utils")
+    testImplementation jUnitTest
+    testImplementation kotlinTest
+    implementation network
+    implementation room
+    kapt roomKapt
+    implementation di
+    kapt diCompiler
+}
