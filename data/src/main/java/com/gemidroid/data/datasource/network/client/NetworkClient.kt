@@ -1,4 +1,4 @@
-package com.gemidroid.data.datasource.network
+package com.gemidroid.data.datasource.network.client
 
 import com.gemidroid.data.BuildConfig
 import com.gemidroid.utils.ConnectionSettings

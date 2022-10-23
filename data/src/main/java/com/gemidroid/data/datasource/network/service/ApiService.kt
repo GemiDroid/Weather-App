@@ -1,4 +1,4 @@
-package com.gemidroid.data.datasource.network
+package com.gemidroid.data.datasource.network.service
 
 import com.gemidroid.data.BuildConfig
 import com.gemidroid.data.model.Location

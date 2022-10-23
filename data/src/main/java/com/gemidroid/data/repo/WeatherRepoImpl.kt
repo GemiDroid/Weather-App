@@ -1,16 +1,20 @@
 package com.gemidroid.data.repo
 
-import com.gemidroid.data.datasource.IDataSource
+import com.gemidroid.data.datasource.network.IRemoteDataSource
+import com.gemidroid.data.datasource.localdb.ILocalDBDataSource
 import com.gemidroid.data.model.Weather
 import com.gemidroid.data.model.WeatherState
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
-class WeatherRepoImpl @Inject constructor(val dataSource: IDataSource) : IWeatherRepo {
+class WeatherRepoImpl @Inject constructor(
+    private val remoteDataSource: IRemoteDataSource,
+    private val localDataSource: ILocalDBDataSource
+) : IWeatherRepo {
 
     override suspend fun getWeatherData(query: String) = flow {
-        dataSource.getWeatherItems(query).catch {
+        remoteDataSource.getWeatherItems(query).catch {
             emit(WeatherState.Error(it.fillInStackTrace()))
         }.collect {
             emit(WeatherState.Success(it))
@@ -18,7 +22,7 @@ class WeatherRepoImpl @Inject constructor(val dataSource: IDataSource) : IWeathe
     }
 
     override suspend fun searchForWeatherCity(query: String) = flow {
-        dataSource.getWeatherLocations(query = query).catch {
+        remoteDataSource.getWeatherLocations(query = query).catch {
             emit(WeatherState.Error(it.fillInStackTrace()))
         }.collect {
             emit(WeatherState.Success(it))
@@ -27,7 +31,7 @@ class WeatherRepoImpl @Inject constructor(val dataSource: IDataSource) : IWeathe
     }
 
     override suspend fun removeItemFromFav(itemName: String?) = flow {
-        dataSource.removeWeatherFromFavourites(itemName)
+        localDataSource.removeWeatherFromFavourites(itemName)
             .catch {
                 emit(WeatherState.Error(it))
             }
@@ -38,7 +42,7 @@ class WeatherRepoImpl @Inject constructor(val dataSource: IDataSource) : IWeathe
 
     override suspend fun addItemToFav(item: Weather) =
         flow {
-            dataSource.saveWeatherToFavourites(item)
+            localDataSource.saveWeatherToFavourites(item)
                 .catch {
                     emit(WeatherState.Error(it))
                 }
@@ -48,7 +52,7 @@ class WeatherRepoImpl @Inject constructor(val dataSource: IDataSource) : IWeathe
         }
 
     override suspend fun getFavWeatherItem(name: String) = flow {
-        dataSource.getFavWeatherItem(name = name).catch {
+        localDataSource.getFavWeatherItem(name = name).catch {
             emit(WeatherState.Error(it.fillInStackTrace()))
         }.collect {
             emit(WeatherState.Success(it))
@@ -56,7 +60,7 @@ class WeatherRepoImpl @Inject constructor(val dataSource: IDataSource) : IWeathe
     }
 
     override suspend fun getFavWeatherItems() = flow {
-        dataSource.getFavWeatherItems().catch {
+        localDataSource.getFavWeatherItems().catch {
             emit(WeatherState.Error(it.fillInStackTrace()))
         }.collect {
             emit(WeatherState.Success(it))

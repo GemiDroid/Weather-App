@@ -10,27 +10,24 @@ import com.gemidroid.data.datasource.localdb.converters.WeatherDayTypeConverter
 import com.gemidroid.data.datasource.localdb.converters.WeatherTypeConverter
 import com.gemidroid.data.datasource.localdb.dao.WeatherDao
 import com.gemidroid.data.datasource.localdb.entities.WeatherEntity
+import javax.inject.Singleton
 
 @Database(entities = [WeatherEntity::class], version = 1)
 @TypeConverters(WeatherTypeConverter::class, WeatherDayTypeConverter::class)
 
 abstract class WeatherDB : RoomDatabase() {
-
     abstract val weatherDao: WeatherDao
 
     companion object {
-        private var weatherInstanceDB: WeatherDB? = null
 
+        @Singleton
         @Synchronized
         fun buildDB(context: Context): WeatherDB {
-            if (weatherInstanceDB == null)
-                weatherInstanceDB = Room.databaseBuilder(
-                    context, WeatherDB::class.java,
-                    BuildConfig.WEATHER_DB_NAME
-                )
-                    .fallbackToDestructiveMigration()
-                    .build()
-            return weatherInstanceDB!!
+            return Room.databaseBuilder(
+                context, WeatherDB::class.java,
+                BuildConfig.WEATHER_DB_NAME)
+                .fallbackToDestructiveMigration()
+                .build()
         }
     }
 }
