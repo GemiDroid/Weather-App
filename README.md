@@ -1,5 +1,6 @@
-# Weather-App
-Add weather feature using:
+<h2 align="center"> Weather App </h2>
+
+### weather feature using:
 - MVVM.
 - Multi-module.
 - Retrofit.
